@@ -1,0 +1,8 @@
+{
+  "extends": ["react-app", "react-app/jest", "prettier"],
+  // "default-case": ["warn", { "commentPattern": "^skip\\sdefault" }],
+  // "no-useless-escape": "error",
+  "rules":{
+    "semi":"warn"
+  }
+}
