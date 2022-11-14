@@ -1,8 +1,10 @@
 {
   "extends": ["react-app", "react-app/jest", "prettier"],
-  // "default-case": ["warn", { "commentPattern": "^skip\\sdefault" }],
-  // "no-useless-escape": "error",
   "rules":{
+    "@typescript-eslint/indent": ["error", "tab"],
+    "array-bracket-spacing": ["error", "always"],
+    "no-useless-escape": "off",
+    "default-case": "off",
     "semi":"warn"
   }
 }

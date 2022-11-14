@@ -4,10 +4,10 @@ import RegistrationForm from "./components/registrationForm";
 
 function App() {
 	return (
-    <div className="App">
-      <RegistrationForm/>
-    </div>
-  );
+		<div className="App">
+			<RegistrationForm/>
+		</div>
+	);
 }
 
 export default App;
