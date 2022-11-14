@@ -28,10 +28,10 @@ const useInput = (initialValue ,validations) =>{
 const useValidation = (value ,validations) => {
 
 	const [ isEmpty ,setEmpty ] = useState(true);
-
 	const [ minLengthError,setMinLengthError ] = useState(false);
 	const [ emailError,setEmailError ] = useState(true);
 	const[ inputValid ,setInputValid ] = useState(false);
+
 	useEffect ( () => {
 		//validations keys 
 		for (let validation in validations){
@@ -50,6 +50,7 @@ const useValidation = (value ,validations) => {
 			}
 		}
 	},[ value ]);
+	
 	useEffect(() => {
 		if(isEmpty  || minLengthError) setInputValid(false);
 
@@ -70,19 +71,19 @@ const RegistrationForm =  () => {
 		<div className={classes.formContainer}>
 			<form className={classes.mainForm}>
         
-				{/* <h1>registration</h1> */}
+				 <h1>registration</h1> 
 
-				{/* {(email.isEmpty && email.isDirty) && <div style={{color:'red'}}> Поле не может быть пустым</div>}
+			 	{(email.isEmpty && email.isDirty) && <div style={{color:'red'}}> Поле не может быть пустым</div>}
 
-        {(email.isDirty && email.minLengthError) && <div style={{color:'red'}}>Неккоректная длина пароля</div>}
+				{(email.isDirty && email.minLengthError) && <div style={{color:'red'}}>Неккоректная длина пароля</div>}
 
-        {(email.emailError && email.isDirty) && <div style={{color:'red'}}>Неккоректный email</div>} */}
-				{/* 
-        <input value={email.value} onChange={e =>email.onChange(e)} onBlur={e => email.onBlur(e)} name='email' type='text'/>
+				{(email.emailError && email.isDirty) && <div style={{color:'red'}}>Неккоректный email</div>} 
+				
+				<input value={email.value} onChange={e =>email.onChange(e)} onBlur={e => email.onBlur(e)} name='email' type='text'/>
 
-        <input value={password.value} onChange={e => password.onChange(e)} onBlur={e => password.onBlur(e)} name='password' type='text'/>
+				<input value={password.value} onChange={e => password.onChange(e)} onBlur={e => password.onBlur(e)} name='password' type='text'/>
 
-        <button disable={`${!email.inputValid}`} className={classes.btn}>reg</button> */}
+				<button disable={`${!email.inputValid}`} className={classes.btn}>reg</button> 
 			</form>
 		</div>
 	);
