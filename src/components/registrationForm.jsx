@@ -69,22 +69,32 @@ const RegistrationForm =  () => {
 
 	return (
 		<div className={classes.formContainer}>
-			<form className={classes.mainForm}>
+			<div className={classes.mainForm}>
+				<section className={classes.section}>
+					<h2 className={classes.sectionPartTitle}>Do you have account?</h2>
+					<button className={classes.sectionBtn} >LogIn</button>
+				</section>
+				<section className={classes.section}>
+					<h2 className={classes.sectionPartTitle}>Do you have account?</h2>
+					<button className={classes.sectionBtn} >LogIn</button>
+				</section>
+				<form className={classes.formBox}>
         
 				 <h1>registration</h1> 
 
-			 	{(email.isEmpty && email.isDirty) && <div style={{color:'red'}}> Поле не может быть пустым</div>}
+			 	{/* {(email.isEmpty && email.isDirty) && <div style={{color:'red'}}> Поле не может быть пустым</div>}
 
-				{(email.isDirty && email.minLengthError) && <div style={{color:'red'}}>Неккоректная длина пароля</div>}
+					{(email.isDirty && email.minLengthError) && <div style={{color:'red'}}>Неккоректная длина пароля</div>}
 
-				{(email.emailError && email.isDirty) && <div style={{color:'red'}}>Неккоректный email</div>} 
+					{(email.emailError && email.isDirty) && <div style={{color:'red'}}>Неккоректный email</div>}  */}
 				
-				<input value={email.value} onChange={e =>email.onChange(e)} onBlur={e => email.onBlur(e)} name='email' type='text'/>
+					<input value={email.value} onChange={e =>email.onChange(e)} onBlur={e => email.onBlur(e)} name='email' type='text'/>
 
-				<input value={password.value} onChange={e => password.onChange(e)} onBlur={e => password.onBlur(e)} name='password' type='text'/>
+					<input value={password.value} onChange={e => password.onChange(e)} onBlur={e => password.onBlur(e)} name='password' type='text'/>
 
-				<button disable={`${!email.inputValid}`} className={classes.btn}>reg</button> 
-			</form>
+					<button disable={`${!email.inputValid}`} className={classes.btn}>reg</button> 
+				</form>
+			</div>
 		</div>
 	);
 };

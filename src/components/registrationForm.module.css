@@ -8,63 +8,50 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: brown;
-}
-.btn{
-    background-color:green;
+    background: linear-gradient(45deg,rgb(31,142,190),rgb(177,2,205),rgb(68,4,149)) ;
 }
 
 .formContainer{
   width:800px;
   height: 500px;
   padding: 40px 0;
-  outline: solid;
   position: relative;
 }
 
 .mainForm{
     height: 100%;
-    background-color: wheat;
-
     box-shadow:  0 5px 45px rgba(0, 0, 0, 0.2);
-
     display: flex;
-
     align-items: center;
 }
 
 /*block registration and logIn */
 
-.block__item{
+.section{
     width: 50%;
+    text-align: center;
 }
 
-
-.block-item{
-text-align: center;
-}
-
-.block-item-title{
+.sectionPartTitle{
     font-size: 1.2rem;
     font-weight: 500;
     color: white;
     margin-bottom: 10px;
 }
 
-.block-item-btn{
+.sectionBtn{
     border: none;
     cursor: pointer;
     padding: 10px 20px;
     background-color: aliceblue;
     color: #333;
-
     font-size: 16px;
     font-weight: 500;
 }
 
 /*form */
 
-.form-box{
+.formBox{
     background-color: white;
     height: 100%;
     width: 50%;
