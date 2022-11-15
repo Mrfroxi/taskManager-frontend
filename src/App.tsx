@@ -1,11 +1,11 @@
 import React from "react";
 
-import RegistrationForm from "./components/registrationForm";
+import AuthComponent from "./components/auth/authComponent";
 
 function App() {
 	return (
 		<div className="App">
-			<RegistrationForm/>
+			<AuthComponent/>
 		</div>
 	);
 }

@@ -2,13 +2,10 @@
     box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(45deg,rgb(31,142,190),rgb(177,2,205),rgb(68,4,149)) ;
+.form{
+    width:100%;
+    padding: 50px;
+    font-size: 16px;
 }
 
 .formContainer{
@@ -16,18 +13,23 @@ body{
   height: 500px;
   padding: 40px 0;
   position: relative;
+  box-shadow:  0 5px 45px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
-
 .mainForm{
     height: 100%;
+    width: 100%;
     box-shadow:  0 5px 45px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 /*block registration and logIn */
 
-.section{
+ .section{
     width: 50%;
     text-align: center;
 }
@@ -47,18 +49,5 @@ body{
     color: #333;
     font-size: 16px;
     font-weight: 500;
-}
-
-/*form */
-
-.formBox{
-    background-color: white;
-    height: 100%;
-    width: 50%;
-    
-    position:  absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-
-}
+    border-radius: 16px;
+} 
