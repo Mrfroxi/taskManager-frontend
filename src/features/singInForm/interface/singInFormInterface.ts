@@ -1,4 +1,4 @@
-import { IAuth } from "../../../shared/interface/authInterface";
+import { IAuth } from "../../../shared/interfaces/authInterface";
 
 export interface SingInProps {
 	active:boolean,

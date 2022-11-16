@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import TitleList from '../../entities/authUi/titleList/titleList';
 import { StyledButton } from '../../shared/ui/button/roundedButton/roundedButton';
 import { StyledInput } from '../../shared/ui/input/authInput/authInput';
 import { SingInProps } from './interface/singInFormInterface';
@@ -36,11 +37,7 @@ const SingInForm  = ({active ,auth}:SingInProps)=>{
 
 		<StyledTitle>Login</StyledTitle>
 
-		{(isEmpty && isDirty) && <div style={{color:'red'}}> The field cannot be empty</div>}
-
-		{(isDirty && minLengthError) && <div style={{color:'red'}}>Incorrect password length</div>}
-
-		{(emailError && isDirty) && <div style={{color:'red'}}>Incorrect email</div>} 
+		<TitleList isDirty={isDirty} minLengthError={minLengthError} emailError={emailError} isEmpty={isEmpty}/>
 
 		<StyledInput name='email' type='text' value= {value} onChange={onChange} onBlur={onBlur} placeholder={'email'}/>
 

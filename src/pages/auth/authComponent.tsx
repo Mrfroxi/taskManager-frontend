@@ -15,7 +15,7 @@ const StyledComponent = styled.div`
    overflow: hidden;
 `;
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<TGlobalProps>`
 body {
 	margin:0;
 	min-height: 100vh;
@@ -30,9 +30,12 @@ box-sizing: border-box;
 }
 `;
 
+type TGlobalProps = {
+	active:boolean;
+}
 const AuthComponent =  () => {
 	const email = useInput('', {isEmpty:true ,minLength:5,isEmail: true ,} );
-	const password = useInput('',{isEmpty:true ,minLength:5});
+	const password = useInput('', {isEmpty:true ,minLength:5});
 	const [ currentAuthCondition ,setCurrentAuthCondition ] = useState(false); 
 
 	const changeAuth = () => {
