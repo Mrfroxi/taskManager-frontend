@@ -20,10 +20,10 @@ const StyledForm = styled.div`${(props)=>{
     `;
 }}`;
 
-const AuthFormBox = ({active ,auth , type}) =>{
+const AuthFormBox = ({active ,email ,type ,password}) =>{
 
 	return <StyledForm active={active}>
-		{type === 'log' ?  <SingInForm  active={active} auth={auth}/> : <SingUpForm active={active} auth={auth}/>}
+		{type === 'log' ?  <SingInForm  active={active} email={email} password={password}/> : <SingUpForm active={active} email={email} password={password}/>}
 
 	</StyledForm>;
 

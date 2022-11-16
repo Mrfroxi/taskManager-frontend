@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TitleList from '../../entities/authUi/titleList/titleList';
 import { StyledButton } from '../../shared/ui/button/roundedButton/roundedButton';
-import { StyledInput } from '../../shared/ui/input/authInput/authInput';
+import AuthInput from '../../shared/ui/input/authInput/authInput';
 import { SingUpProps } from './interface/singUpFormInterface';
 
 type TSingUpFormProps = {
@@ -28,19 +28,19 @@ const StyledTitle = styled.p`
 	font-weight:bold
 `;
 
-const SingUpForm  = ({active ,auth}:SingUpProps)=>{
+const SingUpForm  = ({active ,email ,password}:SingUpProps)=>{
 
-	const {isEmpty,isDirty ,minLengthError,emailError , value , onBlur , onChange} = auth;
+	const {isEmpty,isDirty ,minLengthError,emailError} = email;
 
 	return<StyledForm active={active}>
 
 		<StyledTitle>Registration</StyledTitle>
 
 		<TitleList isDirty={isDirty} minLengthError={minLengthError} emailError={emailError} isEmpty={isEmpty}/>
+	
+		<AuthInput name='email' type='text' value= {email.value} onChange={email.onChange} onBlur={email.onBlur} placeholder={'email'}/>
 
-		<StyledInput name='email' type='text' value= {value} onChange={onChange} onBlur={onBlur} placeholder={'email'}/>
-
-		<StyledInput name='password' type='text' value= {value} onChange={onChange} onBlur={onBlur} placeholder={'password'}/>
+		<AuthInput name='password' type='text' value= {password.value} onChange={password.onChange} onBlur={password.onBlur} placeholder={'password'}/>
 
 		<StyledButton active={active}>Send</StyledButton>
 	</StyledForm>;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TitleList from '../../entities/authUi/titleList/titleList';
 import { StyledButton } from '../../shared/ui/button/roundedButton/roundedButton';
-import { StyledInput } from '../../shared/ui/input/authInput/authInput';
+import AuthInput from '../../shared/ui/input/authInput/authInput';
 import { SingInProps } from './interface/singInFormInterface';
 
 
@@ -29,9 +29,9 @@ type TSingUpFormProps = {
 	active: boolean;
 }
 
-const SingInForm  = ({active ,auth}:SingInProps)=>{
-
-	const {isEmpty,isDirty ,minLengthError,emailError , value , onBlur , onChange} = auth;
+const SingInForm  = ({active ,email ,password}:SingInProps)=>{
+	
+	const {isEmpty,isDirty ,minLengthError,emailError} = email;
 
 	return<StyledForm active={active}>
 
@@ -39,9 +39,9 @@ const SingInForm  = ({active ,auth}:SingInProps)=>{
 
 		<TitleList isDirty={isDirty} minLengthError={minLengthError} emailError={emailError} isEmpty={isEmpty}/>
 
-		<StyledInput name='email' type='text' value= {value} onChange={onChange} onBlur={onBlur} placeholder={'email'}/>
+		<AuthInput name='email' type='text' value= {email.value} onChange={email.onChange} onBlur={email.onBlur} placeholder={'email'}/>
 
-		<StyledInput name='password' type='text' value= {value} onChange={onChange} onBlur={onBlur} placeholder={'password'}/>
+		<AuthInput name='password' type='text' value= {password.value} onChange={password.onChange} onBlur={password.onBlur} placeholder={'password'}/>
 
 		<StyledButton active={active}>Send</StyledButton>
 	</StyledForm>;

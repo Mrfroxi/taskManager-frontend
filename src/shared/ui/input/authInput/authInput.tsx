@@ -8,10 +8,20 @@ type TStyledInputProps = {
 	onBlur: () => void,
 	placeholder: string,
 }
-export const StyledInput = styled.input<TStyledInputProps>`
+
+const StyledInput = styled.input`
 width: 100%;
 padding: 10px;
 border: solid 1px #333;
 font-size:inherit;
 margin-bottom: 10px;
 `;
+
+
+const AuthInput = (props:TStyledInputProps) =>{
+	 const { value , onBlur , onChange} = props;
+	 
+	 return <StyledInput onBlur={onBlur} onChange={onChange} value={value}/>;
+};
+
+export default AuthInput;

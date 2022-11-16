@@ -33,6 +33,7 @@ box-sizing: border-box;
 type TGlobalProps = {
 	active:boolean;
 }
+
 const AuthComponent =  () => {
 	const email = useInput('', {isEmpty:true ,minLength:5,isEmail: true ,} );
 	const password = useInput('', {isEmpty:true ,minLength:5});
@@ -49,9 +50,9 @@ const AuthComponent =  () => {
 
 		<AuthSection onClick ={() => changeAuth() }/>
 		
-		<AuthFormBox   active={currentAuthCondition} auth={email} type={'reg'}/>
+		<AuthFormBox   active={currentAuthCondition} email={email} password={password} type={'reg'}/>
 
-		<AuthFormBox   active={currentAuthCondition} auth={password} type={'log'}/>  
+		<AuthFormBox   active={currentAuthCondition} email={email} password={password}   type={'log'}/>  
 		
 	</StyledComponent>)
 	;

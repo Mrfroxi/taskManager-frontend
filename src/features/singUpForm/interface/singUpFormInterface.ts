@@ -1,6 +1,7 @@
-import { IAuth } from "../../../shared/interfaces/authInterface";
+import { EmailEntity, PasswordEntity } from "../../../shared/interfaces/authInterface";
 
 export interface SingUpProps {
 	active:boolean,
-	auth:IAuth
+	email:EmailEntity
+	password:PasswordEntity
 }
