@@ -1,6 +1,6 @@
 import React from "react";
+import AuthComponent from "./pages/auth/authComponent";
 
-import AuthComponent from "./components/auth/authComponent";
 
 function App() {
 	return (

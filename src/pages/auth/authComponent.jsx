@@ -1,9 +1,9 @@
 import React ,{useState} from 'react';
 import classes from  './authComponent.module.css';
-import { useInput } from '../../hooks/useInput';
-import AuthFormBox from './additionalComponents/authFormBox';
 import { createGlobalStyle } from 'styled-components';
-import AuthSection from './additionalComponents/authSectionForm';
+import { useInput } from '../../shared/utils/useInput';
+import AuthSection from '../../wrapper/authFormSectionWrapper/authSectionWrapper';
+import AuthFormBox from '../../wrapper/authFormWrapper/authFormWrapper';
 
 const AuthComponent =  () => {
 	const email = useInput('', {isEmpty:true ,minLength:5,isEmail: true ,} );
@@ -36,10 +36,9 @@ const AuthComponent =  () => {
 
 			<AuthSection onClick ={() => changeAuth() }/>
 		
+		 	<AuthFormBox   active={currentAuthCondition} auth={email} type={'reg'}/>
 
-			<AuthFormBox type={'log'}  active={currentAuthCondition} auth={email}/>
-
-			<AuthFormBox type={'reg'}  active={currentAuthCondition} auth={password} />
+			<AuthFormBox   active={currentAuthCondition} auth={password} type={'log'}/> 
 		
 		</div>
 	);

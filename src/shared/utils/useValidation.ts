@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Validation } from "./hooksInterface/validationsInterface";
 
 export const useValidation = (value:string ,validations:Validation) => {
-
 	const [ isEmpty ,setEmpty ] = useState(true);
 	const [ minLengthError,setMinLengthError ] = useState(false);
 	const [ emailError,setEmailError ] = useState(true);

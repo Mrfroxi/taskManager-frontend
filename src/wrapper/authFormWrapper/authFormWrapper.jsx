@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css }  from 'styled-components';
-import AuthForm from './authForm';
+import SingInForm from '../../features/singInForm/singInFrom';
+import SingUpForm from '../../features/singUpForm/singUpForm';
+
 
 const StyledForm = styled.div`${(props)=>{
 	return css`
@@ -10,9 +12,7 @@ const StyledForm = styled.div`${(props)=>{
     position:  absolute;
     top: 0;
     left: ${props => props.active ? '0px' :'50%'};
-
     transition: 0.5s ease-in-out;
-
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -20,10 +20,11 @@ const StyledForm = styled.div`${(props)=>{
     `;
 }}`;
 
-const AuthFormBox = ({type ,active ,auth}) =>{
+const AuthFormBox = ({active ,auth , type}) =>{
 
 	return <StyledForm active={active}>
-		<AuthForm  type={type} active={active} auth={auth}/>
+		{type === 'log' ?  <SingInForm  active={active} auth={auth}/> : <SingUpForm active={active} auth={auth}/>}
+
 	</StyledForm>;
 
 	
