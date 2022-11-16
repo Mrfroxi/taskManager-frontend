@@ -15,6 +15,21 @@ const StyledComponent = styled.div`
    overflow: hidden;
 `;
 
+const GlobalStyle = createGlobalStyle`
+body {
+	margin:0;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center; 
+	transition:all 0.5s ease;
+	background: ${props => props.active ? 'rgb(68,4,149)' :'rgb(31,142,190)'}; 
+}
+*{
+box-sizing: border-box;
+}
+`;
+
 const AuthComponent =  () => {
 	const email = useInput('', {isEmpty:true ,minLength:5,isEmail: true ,} );
 	const password = useInput('',{isEmpty:true ,minLength:5});
@@ -23,23 +38,6 @@ const AuthComponent =  () => {
 	const changeAuth = () => {
 		setCurrentAuthCondition(!currentAuthCondition);
 	};
-
-
-	const GlobalStyle = createGlobalStyle`
-	body {
-		margin:0;
-		min-height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center; 
-		transition:all 0.5s ease;
-		background: ${props => props.active ? 'rgb(68,4,149)' :'rgb(31,142,190)'}; 
-	}
-
-	*{
-    box-sizing: border-box;
-	}
-	`;
 
 	return (<StyledComponent >
 		<GlobalStyle active={currentAuthCondition}/>
