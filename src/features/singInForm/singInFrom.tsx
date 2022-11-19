@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TitleList from '../../entities/authUi/titleList/titleList';
 import { StyledButton } from '../../shared/ui/button/roundedButton/roundedButton';
 import AuthInput from '../../shared/ui/input/authInput/authInput';
+import { useInput } from '../../shared/utils/useInput';
 import { SingInProps } from './interface/singInFormInterface';
 
 
@@ -29,15 +30,15 @@ type TSingUpFormProps = {
 	active: boolean;
 }
 
-const SingInForm  = ({active ,email ,password}:SingInProps)=>{
-	
-	const {isEmpty,isDirty ,minLengthError,emailError} = email;
+const SingInForm  = ({active }:SingInProps)=>{
+	const email = useInput('', {isEmpty:true ,minLength:5,isEmail: true ,} );
+	const password = useInput('', {isEmpty:true ,minLength:5});
 
 	return<StyledForm active={active}>
 
 		<StyledTitle>Login</StyledTitle>
 
-		<TitleList isDirty={isDirty} minLengthError={minLengthError} emailError={emailError} isEmpty={isEmpty}/>
+		<TitleList email={email} password={password}/>
 
 		<AuthInput name='email' type='text' value= {email.value} onChange={email.onChange} onBlur={email.onBlur} placeholder={'email'}/>
 

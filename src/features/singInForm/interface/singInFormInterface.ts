@@ -2,6 +2,6 @@ import { EmailEntity, PasswordEntity } from "../../../shared/interfaces/authInte
 
 export interface SingInProps {
 	active:boolean,
-	email:EmailEntity
-	password:PasswordEntity
+	email?:EmailEntity
+	password?:PasswordEntity
 }

@@ -1,6 +1,5 @@
 import React ,{useState} from 'react';
 import   styled, { createGlobalStyle } from 'styled-components';
-import { useInput } from '../../shared/utils/useInput';
 import AuthSection from '../../wrapper/authFormSectionWrapper/authSectionWrapper';
 import AuthFormBox from '../../wrapper/authFormWrapper/authFormWrapper';
 
@@ -35,8 +34,6 @@ type TGlobalProps = {
 }
 
 const AuthComponent =  () => {
-	const email = useInput('', {isEmpty:true ,minLength:5,isEmail: true ,} );
-	const password = useInput('', {isEmpty:true ,minLength:5});
 	const [ currentAuthCondition ,setCurrentAuthCondition ] = useState(false); 
 
 	const changeAuth = () => {
@@ -50,9 +47,9 @@ const AuthComponent =  () => {
 
 		<AuthSection onClick ={() => changeAuth() }/>
 		
-		<AuthFormBox   active={currentAuthCondition} email={email} password={password} type={'reg'}/>
+		<AuthFormBox   active={currentAuthCondition} type={'reg'}/>
 
-		<AuthFormBox   active={currentAuthCondition} email={email} password={password}   type={'log'}/>  
+		<AuthFormBox   active={currentAuthCondition} type={'log'}/>  
 		
 	</StyledComponent>)
 	;

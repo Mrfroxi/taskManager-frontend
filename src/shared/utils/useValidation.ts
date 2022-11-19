@@ -12,7 +12,7 @@ export const useValidation = (value:string ,validations:Validation) => {
 		for (let validation in validations){
 			switch (validation){
 				case 'minLength':
-					value.length < validations[validation] ? setMinLengthError(true) : setMinLengthError(false);
+					value.length < validations.minLength ? setMinLengthError(true) : setMinLengthError(false);
 					break;
 				case 'isEmpty':
 					value ? setEmpty(false) : setEmpty(true);

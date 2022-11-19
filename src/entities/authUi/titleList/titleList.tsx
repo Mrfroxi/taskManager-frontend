@@ -1,21 +1,21 @@
 import React from "react";
+import { EmailEntity, PasswordEntity } from "../../../shared/interfaces/authInterface";
 import { DesiredTitle } from "../../../shared/ui/desiredTitle/desiredTitle";
 
 type TitleListProps = {
-	isEmpty:boolean,
-	isDirty:boolean,
-	minLengthError:boolean,
-	emailError:boolean,
+	email:EmailEntity,
+	password:PasswordEntity
 }
 
-const TitleList = ({isEmpty ,isDirty,minLengthError ,emailError}:TitleListProps) => {
+const TitleList = ({email,password}:TitleListProps) => {
+	
 	return (
 		<>
-			{(isEmpty && isDirty) && <DesiredTitle > The field cannot be empty</DesiredTitle>}
+			{((email.isEmpty || password.isEmpty) && (email.isDirty || password.isDirty)) && <DesiredTitle > The field cannot be empty</DesiredTitle>}
 
-			{(isDirty && minLengthError) && <DesiredTitle >Incorrect password length</DesiredTitle>}
+			{((email.isDirty || password.isDirty) && (password.minLengthError)) && <DesiredTitle >Incorrect password length</DesiredTitle>}
 
-			{(emailError && isDirty) && <DesiredTitle >Incorrect email</DesiredTitle>} 
+			{((email.emailError) && (email.isDirty || password.isDirty)) && <DesiredTitle >Incorrect email</DesiredTitle>} 
 		</>
 	);
 
