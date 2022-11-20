@@ -31,7 +31,7 @@ const SingUpForm  = (props :any)=>{
 	return<StyledForm active={active}>
 
 		<StyledTitle>Login</StyledTitle>
-
+	
 		<AuthInput name='email' onChange={onChange} onBlur={onBlur} value={values.email}  placeholder={'email'}/>
 
 		<AuthInput name='password' onChange={onChange} onBlur={onBlur} value={values.password}  placeholder={'password'}/>
