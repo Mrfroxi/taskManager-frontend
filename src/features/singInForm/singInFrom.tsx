@@ -1,18 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import TitleList from '../../entities/authUi/titleList/titleList';
 import { StyledButton } from '../../shared/ui/button/roundedButton/roundedButton';
 import AuthInput from '../../shared/ui/input/authInput/authInput';
-import { useInput } from '../../shared/utils/useInput';
-import { SingInProps } from './interface/singInFormInterface';
 
 
 const StyledForm = styled.form<TSingUpFormProps>`
         width: 100%;
         padding: 50px;
         font-size: 16px;
-		position: absolute;
-		z-index:3;
+		position: relative;
 		left:${props => props.active ? '0px' : '-100%'};
 		transition:  0.45s;
 		display: flex;
@@ -26,25 +22,27 @@ const StyledTitle = styled.p`
 `;
 
 type TSingUpFormProps = {
-	className?: string;
-	active: boolean;
+	active?: boolean;
 }
 
-const SingInForm  = ({active }:SingInProps)=>{
-	const email = useInput('', {isEmpty:true ,minLength:5,isEmail: true ,} );
-	const password = useInput('', {isEmpty:true ,minLength:5});
+const SingInForm  = (props :any)=>{
 
+	 const { active ,onChange ,onBlur ,onClick ,values ,isValid ,dirty,errors,touched}  = props; 
 	return<StyledForm active={active}>
 
 		<StyledTitle>Login</StyledTitle>
 
-		<TitleList email={email} password={password}/>
+		<AuthInput name='email' onChange={onChange} onBlur={onBlur} value={values.email}  placeholder={'email'}/>
 
-		<AuthInput name='email' type='text' value= {email.value} onChange={email.onChange} onBlur={email.onBlur} placeholder={'email'}/>
+		<AuthInput name='password' onChange={onChange} onBlur={onBlur} value={values.password} placeholder={'password'} />
 
-		<AuthInput name='password' type='text' value= {password.value} onChange={password.onChange} onBlur={password.onBlur} placeholder={'password'}/>
+		<AuthInput name='confirmPassword' onChange={onChange} onBlur={onBlur} value={values.confirmPassword} placeholder={'confirmPassword'}/>
 
-		<StyledButton active={active}>Send</StyledButton>
+		{errors.email && touched.email && <p>{errors.email}</p>}
+
+		{errors.confirmPassword && touched.confirmPassword && <p>{errors.confirmPassword}</p>}
+
+		<StyledButton active={active} type={'submit'} disabled={!isValid && !dirty}>Send</StyledButton> 
 	</StyledForm>;
 };
 

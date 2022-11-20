@@ -7,6 +7,7 @@
     "default-case": "off",
     "semi":"warn",
     "react-hooks/rules-of-hooks": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "no-lone-blocks":"off"
   }
 }

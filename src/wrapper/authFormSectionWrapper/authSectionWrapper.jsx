@@ -7,7 +7,7 @@ const StyledSection = styled.section`
 `;
 
 const StyledSectionTitle = styled.p`
-     font-size: 1.2rem;
+    font-size: 1.2rem;
     font-weight: 500;
     color: white;
     margin-bottom: 10px;

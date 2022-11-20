@@ -1,14 +1,5 @@
 import styled from 'styled-components';
 
-type TStyledInputProps = {
-	name:string,
-	type:string,
-	value: string,
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-	onBlur: () => void,
-	placeholder: string,
-}
-
 const StyledInput = styled.input`
 width: 100%;
 padding: 10px;
@@ -17,11 +8,11 @@ font-size:inherit;
 margin-bottom: 10px;
 `;
 
+const AuthInput = (props:any) =>{
 
-const AuthInput = (props:TStyledInputProps) =>{
-	 const { value , onBlur , onChange} = props;
+	 const { value , onBlur , onChange ,name,placeholder} = props;
 	 
-	 return <StyledInput onBlur={onBlur} onChange={onChange} value={value}/>;
+	 return <StyledInput name={name} type='text' onBlur={onBlur} onChange={onChange} value={value} placeholder={placeholder}/>;
 };
 
 export default AuthInput;

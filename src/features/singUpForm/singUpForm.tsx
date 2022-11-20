@@ -1,22 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import TitleList from '../../entities/authUi/titleList/titleList';
 import { StyledButton } from '../../shared/ui/button/roundedButton/roundedButton';
 import AuthInput from '../../shared/ui/input/authInput/authInput';
-import { useInput } from '../../shared/utils/useInput';
-import { SingUpProps } from './interface/singUpFormInterface';
-
-type TSingUpFormProps = {
-	className?: string;
-	active: boolean;
-}
 
 const StyledForm = styled.form<TSingUpFormProps>`
     width: 100%;
     padding: 50px;
     font-size: 16px;
 	position: absolute;
-	z-index:3;
 	left:${props => props.active ? '100%' : '0'};
 	transition:  0.45s;
 	display: flex;
@@ -29,22 +20,25 @@ const StyledTitle = styled.p`
 	font-weight:bold
 `;
 
-const SingUpForm  = ({active}:SingUpProps)=>{
-	const email = useInput('', {isEmpty:true,minLength:3, isEmail: true } );
-	const password = useInput('', {isEmpty:true ,minLength:5});
-	console.log(password)
-	console.log(email)
+type TSingUpFormProps = {
+	className?: string;
+	active: boolean;
+}
+
+const SingUpForm  = (props :any)=>{
+
+	const { active ,onChange ,onBlur ,onClick ,values ,isValid ,dirty,errors,touched}  = props; 
 	return<StyledForm active={active}>
 
-		<StyledTitle>Registration</StyledTitle>
+		<StyledTitle>Login</StyledTitle>
 
-		<TitleList email={email} password={password}/>
-	
-		<AuthInput name='email' type='text' value= {email.value} onChange={email.onChange} onBlur={email.onBlur} placeholder={'email'}/>
+		<AuthInput name='email' onChange={onChange} onBlur={onBlur} value={values.email}  placeholder={'email'}/>
 
-		<AuthInput name='password' type='text' value= {password.value} onChange={password.onChange} onBlur={password.onBlur} placeholder={'password'}/>
+		<AuthInput name='password' onChange={onChange} onBlur={onBlur} value={values.password}  placeholder={'password'}/>
 
-		<StyledButton active={active}>Send</StyledButton>
+		{errors.email && touched.email && <p>{errors.email}</p>}
+
+		<StyledButton active={active} type={'submit'} disabled={!isValid && !dirty}>Send</StyledButton> 
 	</StyledForm>;
 };
 
