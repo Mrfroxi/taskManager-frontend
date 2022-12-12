@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Formik } from 'formik';
-import * as yup from 'yup';
 import SingInForm from '../../features/singInForm/singInFrom';
 import SingUpForm from '../../features/singUpForm/singUpForm';
-
 const StyledFormBox = styled.div<TSingUpFormProps>`
     background-color:white;
     height: 100%;
@@ -25,69 +22,26 @@ type TSingUpFormProps = {
 	active: boolean;
 }
 
-const AuthFormBox = ({active  ,type }:any) =>{
+const AuthFormBox = ({active}:any) =>{
 
-	const validationsSchema = yup.object().shape({
-		email:yup.string().email('Enter right email').typeError('email must be a string').required('necessarily'),
-		password : yup.string().typeError('email must be a string').required('necessarily'),
-		confirmPassword: yup.string().oneOf([ yup.ref('password') ] , 'Passwords do not match ')
-	});
+
 
 	return  <StyledFormBox active={active}>
+	
+		<>
+			<SingInForm 
+				active={active} 
+					
+			/>
 
-		<Formik
-			initialValues={{ 
-				email: '', 
-				password: '' 
-				,confirmPassword:'' 
-			}}
-			onSubmit={(values) => {
-				console.log(values);
-			}}
-			validateOnBlur
-			validationSchema={validationsSchema}
-		>
-
-			{({
-				values,
-				errors,
-				touched,
-				handleChange,
-				handleBlur,
-				handleSubmit,
-				isValid,
-				isSubmitting,
-				dirty
-				/* and other goodies */
-			}) => (		
-				<>
-					<SingInForm 
-						active={active} 
-						onChange={handleChange} 
-						onBlur={handleBlur} 
-						values={values}
-						dirty={dirty}
-						isValid={isValid}
-						errors={errors}
-						touched={touched}
-					/>
-
-					<SingUpForm 
-						active={active} 
-						onChange={handleChange} 
-						onBlur={handleBlur} 
-						values={values}
-						dirty={dirty}
-						isValid={isValid}
-						errors={errors}
-						touched={touched}
-					/>
+			<SingUpForm 
+				active={active} 
+						
+			/>
 				
-				</>
+		</>
 				
 
-			)}
-		</Formik>
 
 	</StyledFormBox>;
 };

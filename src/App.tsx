@@ -3,7 +3,7 @@ import { Routes ,Route  } from "react-router-dom";
 import AuthComponent from "./pages/auth/authComponent";
 import Main from "./pages/main/main";
 import NotFoundRoute from "./pages/main1";
-import Main2 from "./pages/main2";
+
 
 
 function App() {

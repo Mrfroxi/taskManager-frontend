@@ -47,9 +47,9 @@ const AuthComponent =  () => {
 
 		<AuthSection onClick ={() => changeAuth() }/>
 		
-		<AuthFormBox   active={currentAuthCondition} type={'reg'}/>
+		<AuthFormBox   active={currentAuthCondition} />
 
-		<AuthFormBox   active={currentAuthCondition} type={'log'}/>  
+		<AuthFormBox   active={currentAuthCondition} />  
 		
 	</StyledComponent>)
 	;

@@ -2,7 +2,7 @@ import styled  from 'styled-components';
 
 type SendButton = {
 	active:boolean,
-	isValid?:boolean
+	isValid?:boolean,
 }
 
 export const StyledButton =styled.button<SendButton>`
