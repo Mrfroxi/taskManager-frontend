@@ -1,22 +1,22 @@
 import axios from 'axios';
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { StyledButton } from '../../shared/ui/button/roundedButton/roundedButton';
 import AuthInput from '../../shared/ui/input/authInput/authInput';
-import { validationsSchema } from '../../shared/utils/validationSchema/validationShema';
-
+import { validationsSchemaLogin } from '../../shared/utils/validationSchema/validationSchemaLogin';
 
 const StyledForm = styled.form<TSingUpFormProps>`
-        width: 100%;
-        padding: 50px;
-        font-size: 16px;
-		position: relative;
-		left:${props => props.active ? '0px' : '-100%'};
-		transition:  0.45s;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;        
+    width: 100%;
+    padding: 50px;
+    font-size: 16px;
+	position: absolute;
+	left:${props => props.active ? '100%' : '0'};
+	transition:  0.45s;
+	display: flex;
+	flex-direction: column;
+    justify-content: space-between;   
 `; 
 
 const StyledTitle = styled.p`
@@ -25,62 +25,53 @@ const StyledTitle = styled.p`
 `;
 
 type TSingUpFormProps = {
-	active?: boolean;
+	className?: string;
+	active: boolean;
 }
 
-const SingInForm  = ({active} :any)=>{
-	return <StyledForm active={active}>
+const SingUpForm  = ({active} :any)=>{
+	const navigate = useNavigate();
+	const formik = useFormik({
 
-		<Formik
-			initialValues={{ 
-				email: '', 
-				password: '' ,
-				confirmPassword:'',
-			}}
-			onSubmit={async (values) => {
-				const response = await axios.get('http://159.223.139.137/users');
-				console.log(response.data);
-			}}
-			validateOnBlur
-			validationSchema={validationsSchema}
-		>
+		initialValues: {
+			password: '',
+			email: '',
+		},
+		//values is a first param in function
+		onSubmit: (values,actions) => {
+			console.log(1);
+			
+			navigate("/main");
+	
 
-			{({
-				values,
-				errors,
-				touched,
-				handleChange,
-				handleBlur,
-				handleSubmit,
-				isValid,
-				isSubmitting,
-				dirty
-				/* and other goodies */
-			}) => (		
-				<>
-					
-					<StyledTitle>Login</StyledTitle>
+			formik.resetForm({});//reset FieldForm
 
-					<AuthInput name='email' onChange={handleChange} onBlur={handleBlur} value={values.email}  placeholder={'email'}/>
+			actions.setSubmitting(true);//watch the push
+		},
 
-					<AuthInput name='password' onChange={handleChange} onBlur={handleBlur} value={values.password} placeholder={'password'} />
+		validationSchema:validationsSchemaLogin
+	});
 
-					<AuthInput name='confirmPassword' onChange={handleChange} onBlur={handleBlur} value={values.confirmPassword} placeholder={'confirmPassword'}/>
+	return (
 
-					{errors.email && touched.email && <p>{errors.email}</p>}
+		<StyledForm active={active} onSubmit={formik.handleSubmit}>
 
-					{errors.confirmPassword && touched.confirmPassword && <p>{errors.confirmPassword}</p>}
+			<StyledTitle>Login</StyledTitle>
 
-					<StyledButton active={active} type={'submit'}  disabled={!isValid && !dirty}>Send</StyledButton> 
-				
-				</>
-				
+			<AuthInput name='email' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email}  placeholder={'email'}/>
 
-			)}
-		</Formik>
-	</StyledForm>;
+			{formik.errors.email && formik.touched.email && <p>{formik.errors.email}</p>}
+
+			<AuthInput name='password' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} placeholder={'password'} />
+
+			{formik.errors.password && formik.touched.password && <p>{formik.errors.password}</p>}
+
+			<StyledButton  type={'submit'}  disabled={!(formik.isValid && formik.dirty) } >Send</StyledButton> 
+
+		</StyledForm>
+
+	);
+
 };
 
-export default SingInForm;
-
-
+export default SingUpForm;

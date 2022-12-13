@@ -29,12 +29,12 @@ const AuthFormBox = ({active}:any) =>{
 	return  <StyledFormBox active={active}>
 	
 		<>
-			<SingInForm 
+			<SingUpForm 
 				active={active} 
 					
 			/>
 
-			<SingUpForm 
+			<SingInForm
 				active={active} 
 						
 			/>

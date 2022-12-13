@@ -41,6 +41,7 @@ const AuthComponent =  () => {
 	};
 
 	return (<StyledComponent >
+	
 		<GlobalStyle active={currentAuthCondition}/>
 
 		<AuthSection onClick ={() => changeAuth() }/>
