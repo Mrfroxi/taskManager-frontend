@@ -39,10 +39,14 @@ const SingUpForm  = ({active} :any)=>{
 		},
 		//values is a first param in function
 		onSubmit: (values,actions) => {
-			console.log(1);
-			
-			navigate("/main");
-	
+
+			axios.post('http://159.223.139.137/auth/log-in',{
+				email :formik.values.email,
+				password: formik.values.password,
+			}).then((res) => {
+				console.log(res);
+				navigate("/main");
+			}).catch(err=>console.log(err));
 
 			formik.resetForm({});//reset FieldForm
 

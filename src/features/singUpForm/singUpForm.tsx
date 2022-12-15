@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { StyledButton } from '../../shared/ui/button/roundedButton/roundedButton';
 import AuthInput from '../../shared/ui/input/authInput/authInput';
@@ -33,9 +33,13 @@ type TSingUpFormProps = {
 
 const SingInForm  = ({active} : TSingUpFormProps) =>{
 
+	const [ requestForbidden, setRequestForbidden ] = useState(false);
+
+
 	const formik = useFormik({
 
 		initialValues: {
+			userName:'',
 			confirmPassword: '',
 			password: '',
 			email: '',
@@ -45,7 +49,12 @@ const SingInForm  = ({active} : TSingUpFormProps) =>{
 		
 			axios.post('http://159.223.139.137/auth/createUser',{
 				email :formik.values.email,
-				password: formik.values.email
+				password: formik.values.password,
+				userName: formik.values.userName
+			}).then(()=>{
+				setRequestForbidden(!requestForbidden);
+			}).catch(() => {
+				setRequestForbidden(!requestForbidden);
 			});
 
 			formik.resetForm({});//reset FieldForm
@@ -57,29 +66,35 @@ const SingInForm  = ({active} : TSingUpFormProps) =>{
 	});
 
 	return (
+		<>
+		
+			
+			<StyledForm active={active} onSubmit={formik.handleSubmit}>
 
-		<StyledForm active={active} onSubmit={formik.handleSubmit}>
+				{
+					requestForbidden ? 'this user already exists' :  formik.isSubmitting && <p>{'Check your Email to connect registration'}</p>
+				}
 
-			{formik.isSubmitting && <p>{'Check your Email to connect registration'}</p>}
+				<StyledTitle>Login</StyledTitle>
 
-			<StyledTitle>Login</StyledTitle>
+				<AuthInput name='userName' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.userName}  placeholder={'userName'}/>
 
-			<AuthInput name='email' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email}  placeholder={'email'}/>
+				<AuthInput name='email' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email}  placeholder={'email'}/>
 
-			{formik.errors.email && formik.touched.email && <p>{formik.errors.email}</p>}
+				{formik.errors.email && formik.touched.email && <p>{formik.errors.email}</p>}
 
-			<AuthInput name='password' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} placeholder={'password'} />
+				<AuthInput name='password' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.password} placeholder={'password'} />
 
-			{formik.errors.password && formik.touched.password && <p>{formik.errors.password}</p>}
+				{formik.errors.password && formik.touched.password && <p>{formik.errors.password}</p>}
 
-			<AuthInput name='confirmPassword' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.confirmPassword} placeholder={'confirmPassword'}/>
+				<AuthInput name='confirmPassword' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.confirmPassword} placeholder={'confirmPassword'}/>
 
-			{formik.errors.confirmPassword && formik.touched.confirmPassword && <p>{formik.errors.confirmPassword}</p>}
+				{formik.errors.confirmPassword && formik.touched.confirmPassword && <p>{formik.errors.confirmPassword}</p>}
 
-			<StyledButton  type={'submit'}  disabled={!(formik.isValid && formik.dirty) } >Send</StyledButton> 
+				<StyledButton  type={'submit'}  disabled={!(formik.isValid && formik.dirty) } >Send</StyledButton> 
 
-		</StyledForm>
-
+			</StyledForm>
+		</>
 	);
 
 };
